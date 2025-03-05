@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logcollector-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: logcollector-operator
+  template:
+    metadata:
+      labels:
+        app: logcollector-operator
+    spec:
+      serviceAccountName: logcollector-operator
+      containers:
+      - name: operator
+        image: segoj/logcollector:01
+        imagePullPolicy: Always

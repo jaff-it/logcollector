@@ -1,0 +1,3 @@
+logCollector/__pycache__/
+logCollector/*.pyc
+logCollector/venv/

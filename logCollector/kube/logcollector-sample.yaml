@@ -1,0 +1,13 @@
+apiVersion: local.com/v1
+kind: LogCollector
+metadata:
+  name: logcollector-sample
+spec:
+  podSelector: "app=logcollector-operator"
+  bucket: "logs"
+  minioEndpoint: "minio-tenant-hl.tenant-namespace.svc.cluster.local:9000"
+  accessKey: "minio"
+  secretKey: "minio123"
+  debug: "true"
+  rewrite: "true"
+  push_interval: "60"
