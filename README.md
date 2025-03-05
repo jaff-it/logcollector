@@ -13,13 +13,13 @@ kopf: For building the operator.
 kubernetes: Python client for interacting with Kubernetes.
 minio: Python client for Minio.
 
-shell ```
+ ```
 pip install kopf kubernetes minio
 ```
 
 ## Install Minio operator
 
-shell```
+```
 helm repo add minio-operator https://operator.min.io
 
 helm search repo minio-operator
@@ -37,12 +37,12 @@ kubectl get all -n minio-operator
 ```
 ## Install Minio tenant
 
-shell```
+```
 curl -sLo tenant-values.yaml https://raw.githubusercontent.com/minio/operator/master/helm/tenant/values.yaml
 ```
 
 Fix values and deploy
-shell```
+```
 helm install \
 --namespace tenant-namespace \
 --create-namespace \
@@ -56,7 +56,7 @@ Forward the Tenant’s MinIO port,
 Create an alias for the Tenant service,
 You can use mc mb to create a bucket on the Tenant:
 
-shell```
+```
 kubectl port-forward svc/minio-tenant-hl 9000 -n tenant-namespace
 mc alias set myminio https://localhost:9000 minio minio123 --insecure
 mc mb myminio/mybucket --insecure
@@ -66,7 +66,7 @@ mc ls myminio/mybucketmybucket
 
 When MinIO started we can setup operator resources:
 
-shell```
+```
 cd kube
 kubectl apply -f rbac.yaml
 kubectl apply -f logcollector-crd.yaml
@@ -76,14 +76,14 @@ kubectl apply -f logcollector-sample.yaml
 
 Test your connection:
 
-shell```
+```
 cd ..
 python3 minio-test-connection.py
 ```
 
 If you see no errors then deploy operator:
 
-shell```
+```
 kubectl apply -f logcollector-deployment.yaml
 ```
 
